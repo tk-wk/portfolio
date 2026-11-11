@@ -1,0 +1,221 @@
+/* Crimson coat, gold trim, cream shirt: diagonal bands of red and gold behind a cream page. */
+:root {
+    --crimson: #8a2230;
+    --crimson-deep: #5e1520;
+    --gold: #c99a4e;
+    --gold-bright: #e2b965;
+    --paper: #f1e9d4;      /* the shirt */
+    --text: #2a0e12;
+    --muted: #6b4a42;
+    --faint: #9a7a6c;
+    --line: rgb(94 21 32 / 0.18);
+    --band: 13rem;
+    color-scheme: light;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 1px 0; /* keeps the page's margin inside body */
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+html {
+    min-height: 100%;
+    background: var(--crimson);
+    scrollbar-color: var(--gold) var(--crimson-deep);
+    caret-color: var(--crimson);
+}
+
+/* Bands of crimson and gold rising to the right at about 30 degrees, softened with a 10px blur.
+   The layer overhangs the window so the blur doesn't fade at the edges. */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -40px;
+    z-index: -1;
+    background: repeating-linear-gradient(
+        -30deg,
+        var(--crimson) 0,
+        var(--crimson) var(--band),
+        var(--gold) var(--band),
+        var(--gold) calc(var(--band) * 2)
+    );
+    filter: blur(10px);
+}
+
+::selection {
+    background: var(--crimson);
+    color: var(--paper);
+}
+
+:focus-visible {
+    outline: 2px solid var(--crimson);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+a {
+    color: inherit;
+    text-decoration-color: var(--gold);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+}
+
+a:hover {
+    color: var(--crimson);
+    text-decoration-color: var(--crimson);
+}
+
+h1, h2, h3, p {
+    margin: 0;
+}
+
+h1, h2 {
+    text-wrap: balance;
+}
+
+/* Page frame: a cream sheet with a gold trim, like the coat's edging. */
+
+.page {
+    max-width: 44rem;
+    margin: clamp(1rem, 8vh, 5rem) auto;
+    padding: clamp(2rem, 6vw, 4rem) clamp(1.25rem, 6vw, 4rem) 3rem;
+    background: var(--paper);
+    border: 3px double var(--gold);
+    outline: 1px solid var(--crimson-deep);
+    box-shadow: 0 20px 50px rgb(42 14 18 / 0.45);
+}
+
+@media (max-width: 46rem) {
+    .page {
+        margin: 1rem;
+    }
+}
+
+/* Header */
+
+.intro h1 {
+    font-size: clamp(2.25rem, 6vw, 3.25rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: var(--crimson);
+}
+
+.intro .role {
+    margin-top: 0.5rem;
+    color: var(--muted);
+}
+
+.intro .lede {
+    margin-top: 2rem;
+    max-width: 34rem;
+}
+
+/* The trim: a double gold rule under the name. */
+.trim {
+    width: 4rem;
+    height: 5px;
+    margin: 1.5rem 0 0;
+    border: 0;
+    border-top: 1.5px solid var(--gold);
+    border-bottom: 1.5px solid var(--gold);
+}
+
+/* Sections */
+
+section {
+    margin-top: 4rem;
+}
+
+section > h2 {
+    font-size: 0.8125rem;
+    font-weight: 650;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    margin-bottom: 1rem;
+}
+
+/* Work list */
+
+.work {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--line);
+}
+
+.work li {
+    border-bottom: 1px solid var(--line);
+}
+
+.work a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.25rem 1.5rem;
+    padding: 1.25rem 0;
+    text-decoration: none;
+}
+
+.work a:hover h3 {
+    color: var(--crimson);
+    text-decoration: underline;
+    text-decoration-color: var(--crimson);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+}
+
+.work h3 {
+    font-size: 1.125rem;
+    font-weight: 650;
+}
+
+.work .year {
+    color: var(--faint);
+    font-variant-numeric: tabular-nums;
+}
+
+.work p {
+    grid-column: 1 / -1;
+    color: var(--muted);
+}
+
+.work .stack {
+    grid-column: 1 / -1;
+    font-size: 0.875rem;
+    color: var(--faint);
+}
+
+/* About and contact */
+
+.about p {
+    color: var(--muted);
+}
+
+.about p + p {
+    margin-top: 1rem;
+}
+
+.contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+footer {
+    margin-top: 4rem;
+    font-size: 0.875rem;
+    color: var(--faint);
+}

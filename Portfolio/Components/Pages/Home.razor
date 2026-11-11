@@ -1,0 +1,74 @@
+﻿@page "/"
+
+<PageTitle>Jeb Silva</PageTitle>
+
+<main class="page">
+    <header class="intro">
+        <h1>Jeb Silva</h1>
+        <p class="role">Software developer · .NET &amp; Blazor</p>
+        <hr class="trim" />
+        <p class="lede">
+            I build small, quiet software that does one thing well: study tools, word games,
+            and the occasional desktop app. I like interfaces that get out of the way.
+        </p>
+    </header>
+
+    <section aria-labelledby="work-heading">
+        <h2 id="work-heading">Work</h2>
+        <ul class="work">
+            @foreach (var project in Projects)
+            {
+                <li>
+                    <a href="@project.Url">
+                        <h3>@project.Name</h3>
+                        <span class="year">@project.Year</span>
+                        <p>@project.Summary</p>
+                        <span class="stack">@string.Join(" · ", project.Stack)</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </section>
+
+    <section class="about" aria-labelledby="about-heading">
+        <h2 id="about-heading">About</h2>
+        <p>
+            A short paragraph about you goes here: what you study or work on, what you care about
+            when you build things, and what you are looking for next.
+        </p>
+        <p>
+            Keep it to two or three sentences. The work list above does most of the talking.
+        </p>
+    </section>
+
+    <section aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Contact</h2>
+        <ul class="contact">
+            <li><a href="mailto:hello@example.com">Email</a></li>
+            <li><a href="https://github.com/" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/" rel="noopener">LinkedIn</a></li>
+        </ul>
+    </section>
+
+    <footer>
+        Built with ASP.NET Core and Blazor.
+    </footer>
+</main>
+
+@code {
+    private sealed record Project(string Name, string Year, string Summary, string[] Stack, string Url);
+
+    // Sample entries. Swap the summaries and links for the real ones.
+    private static readonly Project[] Projects =
+    [
+        new("Indexed", "2026",
+            "A desktop flashcard app with spaced repetition, cloze and multiple-choice cards, and exam scheduling.",
+            ["C#", "Blazor Hybrid", "MudBlazor"], "#"),
+        new("Last Letter", "2026",
+            "A real-time multiplayer word game for the browser: chain words by their last letter before the clock runs out.",
+            ["ASP.NET Core", "Blazor WebAssembly", "SignalR"], "#"),
+        new("This site", "2026",
+            "A one-page portfolio rendered on the server with static Blazor. No JavaScript framework, no CSS framework.",
+            ["ASP.NET Core", "Blazor SSR"], "#"),
+    ];
+}
