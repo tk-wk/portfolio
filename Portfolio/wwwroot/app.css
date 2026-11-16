@@ -9,7 +9,7 @@
     --muted: #6b4a42;
     --faint: #9a7a6c;
     --line: rgb(94 21 32 / 0.18);
-    --band: 13rem;
+    --band: 208px;
     color-scheme: light;
 }
 
@@ -28,6 +28,7 @@ body {
 }
 
 html {
+    font-size: 90%; /* every rem on the page scales from this: text and the spacing around it */
     min-height: 100%;
     background: var(--crimson);
     scrollbar-color: var(--gold) var(--crimson-deep);
@@ -48,7 +49,7 @@ body::before {
         var(--gold) var(--band),
         var(--gold) calc(var(--band) * 2)
     );
-    filter: blur(10px);
+    filter: blur(50px);
 }
 
 ::selection {
@@ -85,7 +86,7 @@ h1, h2 {
 /* Page frame: a cream sheet with a gold trim, like the coat's edging. */
 
 .page {
-    max-width: 44rem;
+    max-width: 704px; /* fixed in px so the box keeps its width when the text size changes */
     margin: clamp(1rem, 8vh, 5rem) auto;
     padding: clamp(2rem, 6vw, 4rem) clamp(1.25rem, 6vw, 4rem) 3rem;
     background: var(--paper);
@@ -116,7 +117,7 @@ h1, h2 {
 }
 
 .intro .lede {
-    margin-top: 2rem;
+    margin-top: 1rem;
     max-width: 34rem;
 }
 
@@ -133,7 +134,7 @@ h1, h2 {
 /* Sections */
 
 section {
-    margin-top: 4rem;
+    margin-top: 1.5rem;
 }
 
 section > h2 {
