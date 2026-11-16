@@ -483,3 +483,7 @@ $RECYCLE.BIN/
 
 # Claude Code preview config
 .claude/
+
+# Static export for GitHub Pages
+publish/
+_site/
